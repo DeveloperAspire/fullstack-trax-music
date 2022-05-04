@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { NextApiRequest, NextApiResponse } from "next";
 import jwt from "jsonwebtoken";
-import prisma from "prisma";
+import { prisma } from "./prisma";
 
 export const validateRoute = (handler) => {
   return async (req: NextApiRequest, res: NextApiResponse) => {
@@ -22,6 +22,7 @@ export const validateRoute = (handler) => {
       } catch (error) {
         res.status(401);
         res.json({ error: "Not Authorized" });
+        return;
       }
 
       return handler(req, res, user);
@@ -30,4 +31,9 @@ export const validateRoute = (handler) => {
     res.status(401);
     res.json({ error: "Not Authorized" });
   };
+};
+
+export const validateToken = (token) => {
+  const user = jwt.verify(token, "hello");
+  return user;
 };

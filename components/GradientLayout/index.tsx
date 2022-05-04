@@ -4,16 +4,15 @@ import { Image } from "@chakra-ui/react";
 interface LayoutProps {
   color: string;
   children: React.ReactNode;
-  image: typeof Image;
+  image: string;
   subtitle: string;
   title: string;
   description: string;
   roundedImage: boolean;
 }
 
-// : React.FC<LayoutProps>
 
-const GradientLayout = ({
+const GradientLayout: React.FC<LayoutProps> = ({
   color,
   children,
   image,
@@ -45,6 +44,7 @@ const GradientLayout = ({
           <Text fontSize="x-small">{description}</Text>
         </Box>
       </Flex>
+      <Box paddingY="50px">{children}</Box>
     </Box>
   );
 };

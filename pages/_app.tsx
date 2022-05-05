@@ -19,15 +19,14 @@ const theme = extendTheme({
       800: "#424242",
       900: "#212121",
     },
-
-    components: {
-      Button: {
-        variants: {
-          link: {
-            ":focus": {
-              outline: "none",
-              boxShadow: "none",
-            },
+  },
+  components: {
+    Button: {
+      variants: {
+        link: {
+          ":focus": {
+            outline: "none",
+            boxShadow: "none",
           },
         },
       },

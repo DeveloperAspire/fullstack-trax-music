@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import NextLink from "next/link";
 import MenuItem from "../MenuItem";
- import { usePlaylist } from "../../lib/hooks";
+import { usePlaylist } from "../../lib/hooks";
 import {
   Box,
   List,
@@ -54,7 +54,7 @@ const musicMenu = [
 //const playLists = new Array(30).fill(1).map((_, i) => `Playlist ${i + 1}`);
 
 const Sidebar = () => {
-  const {playLists} = usePlaylist();
+  const { playLists, isLoading } = usePlaylist();
   return (
     <Box
       width="100%"
@@ -76,7 +76,13 @@ const Sidebar = () => {
             {playLists.map((playlist) => (
               <ListItem paddingX="20px" key={playlist.id}>
                 <LinkBox>
-                  <NextLink href="/" passHref>
+                  <NextLink
+                    href={{
+                      pathname: "/playlist/[id]",
+                      query: { id: playlist.id },
+                    }}
+                    passHref
+                  >
                     <LinkOverlay>{playlist.name}</LinkOverlay>
                   </NextLink>
                 </LinkBox>

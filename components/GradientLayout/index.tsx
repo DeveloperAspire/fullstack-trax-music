@@ -41,7 +41,9 @@ const GradientLayout: React.FC<LayoutProps> = ({
             {subtitle}
           </Text>
           <Text fontSize="6xl">{title}</Text>
-          <Text fontSize="x-small">{description}</Text>
+          <Text fontSize="x-small" casing="uppercase">
+            {description}
+          </Text>
         </Box>
       </Flex>
       <Box paddingY="50px">{children}</Box>

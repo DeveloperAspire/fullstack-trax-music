@@ -3,13 +3,14 @@ import Head from "next/head";
 import { useMe } from "../lib/hooks";
 import GradientLayout from "../components/GradientLayout";
 import ArtistList from "../components/ArtistList";
-import ArtistCard from "../components/ArtistCard";
+import { Skeleton } from "@chakra-ui/react";
 
 import { prisma } from "../lib/prisma";
 
 const Home = ({ artists }) => {
+  const { user, isLoading } = useMe();
 
-  const {user} = useMe();
+  
   return (
     <div>
       <Head>
@@ -21,14 +22,13 @@ const Home = ({ artists }) => {
         color="purple"
         roundedImage={true}
         subtitle="Profile"
-        title="Franklin Okolie"
-        description="15 public playlist"
+        title={`${user?.firstName} ${user?.lastName}`}
+        description={`${user?.playlistsCount} public playlists`}
         image={
           "https://dl.dropboxusercontent.com/s/bgiv0ssz3xpotz9/peep.png?dl=0"
         }
       >
-        <ArtistList artists={artists}/>
-        
+        <ArtistList artists={artists} />
       </GradientLayout>
     </div>
   );
